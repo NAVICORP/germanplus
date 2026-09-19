@@ -376,3 +376,17 @@ body.sheet-open .fab-stack{opacity:0;pointer-events:none}
   .shell{padding-inline:14px}
   .cat img{width:84px;height:84px}
 }
+
+/* ---------- more products ---------- */
+.more-wrap{display:flex;justify-content:center;margin-top:26px}
+.more-wrap[hidden]{display:none}
+.more-wrap .ico{width:16px;height:16px}
+
+/* ---------- page head ---------- */
+.page-head{padding:30px 0 6px}
+@media (min-width:768px){.page-head{padding:40px 0 10px}}
+.crumbs{display:flex;gap:8px;align-items:center;font-size:13px;color:var(--muted);margin-bottom:14px}
+.crumbs a{color:var(--red);font-weight:600}
+.crumbs a:hover{color:var(--red-deep)}
+.page-head h1{font-size:clamp(28px,4.4vw,42px);margin-bottom:12px}
+.page-head p{color:var(--ink-soft);max-width:60ch}
