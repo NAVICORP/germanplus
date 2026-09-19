@@ -114,8 +114,8 @@ input{font:inherit}
 .catbar-inner::-webkit-scrollbar{display:none}
 .catbar-all{
   display:inline-flex;align-items:center;gap:9px;flex:none;
-  background:var(--red-deep);color:#fff;font-size:14px;font-weight:700;
-  padding:13px 18px;border-radius:999px;margin:7px 10px 7px 0;width:max-content;
+  color:#fff;font-size:14px;font-weight:700;
+  padding:14px 14px 14px 0;width:max-content;
 }
 .catbar-all svg{width:16px;height:16px}
 .catbar-inner a{flex:none;padding:14px 12px;font-size:14px;font-weight:600;color:rgba(255,255,255,.9);white-space:nowrap}
