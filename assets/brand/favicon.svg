@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <rect width="64" height="64" rx="14" fill="#16161A"/>
+  <path d="M14 42c10-3 18-9 26-19 3 6 4 11 3 15-8 6-18 8-29 8z" fill="#C8102E"/>
+  <path d="M14 48c10-2 19-6 27-13 1 4 1 7 0 10-8 4-17 6-27 6z" fill="#E3A81C"/>
+  <text x="14" y="28" font-family="Manrope,Arial,sans-serif" font-size="22" font-weight="800" fill="#fff">GP</text>
+</svg>
