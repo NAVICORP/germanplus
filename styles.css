@@ -74,6 +74,8 @@ body.sheet-open .site-head{opacity:0;pointer-events:none;transition:opacity .2s 
 .nav-desktop a:hover::after{transform:scaleX(1)}
 @media (min-width:980px){.nav-desktop{display:flex}}
 .head-actions{display:flex;align-items:center;gap:10px}
+.head-actions .btn{display:none}
+@media (min-width:980px){.head-actions .btn{display:inline-flex}}
 
 .menu-btn{
   width:44px;height:44px;display:grid;place-content:center;gap:5px;
@@ -373,3 +375,20 @@ body.sheet-open .site-head{opacity:0;pointer-events:none;transition:opacity .2s 
   .hero h1{font-size:38px}
   .pill,.strip-inner span{font-size:13px}
 }
+
+
+/* ---------- floating WhatsApp button ---------- */
+.wa-fab{
+  position:fixed;z-index:50;
+  right:16px;bottom:calc(16px + env(safe-area-inset-bottom, 0px));
+  width:56px;height:56px;border-radius:999px;
+  display:grid;place-items:center;
+  background:#25D366;color:#fff;
+  box-shadow:0 12px 26px -10px rgba(20,16,10,.55);
+  transition:transform .2s var(--ease),box-shadow .2s var(--ease);
+}
+.wa-fab svg{width:30px;height:30px}
+.wa-fab:active{transform:scale(.94)}
+.wa-fab:hover{box-shadow:0 16px 30px -10px rgba(20,16,10,.6)}
+body.sheet-open .wa-fab{opacity:0;pointer-events:none;transition:opacity .2s var(--ease)}
+@media (min-width:980px){.wa-fab{display:none}}
