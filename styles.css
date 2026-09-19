@@ -273,6 +273,8 @@ body.sheet-open .site-head{opacity:0;pointer-events:none;transition:opacity .2s 
 .foot-nav a{color:rgba(255,255,255,.78)}
 .foot-nav a:hover{color:#fff}
 .foot-meta{display:grid;gap:8px;font-size:15px;font-weight:600;color:rgba(255,255,255,.78);align-content:start}
+.foot-meta a{width:max-content}
+.foot-meta a:hover{color:#fff}
 .foot-base{
   display:flex;flex-wrap:wrap;gap:10px 24px;justify-content:space-between;
   padding-block:22px;border-top:1px solid rgba(255,255,255,.12);

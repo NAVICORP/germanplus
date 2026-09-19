@@ -1,4 +1,4 @@
-const WA = '233245466925';
+const WA = '233506690190';
 
 const PRODUCTS = [
   {
