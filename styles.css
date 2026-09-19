@@ -117,47 +117,35 @@ body.sheet-open .site-head{opacity:0;pointer-events:none;transition:opacity .2s 
 /* ---------- hero ---------- */
 .hero{padding:44px 0 56px;overflow:hidden}
 @media (min-width:768px){.hero{padding:72px 0 88px}}
-.hero-grid{display:grid;gap:40px;align-items:center}
-@media (max-width:979px){
-  .hero-copy{display:contents}
-  .hero-grid > .eyebrow{order:1}
-  .hero-grid h1{order:2}
-  .hero-grid .lede{order:3}
-  .hero-grid .hero-cta{order:4}
-  .hero-visual{order:5}
-  .hero-grid .hero-facts{order:6}
-  .hero-grid{gap:0}
-  .hero-grid h1{margin-bottom:18px}
-  .hero-grid .lede{margin-bottom:26px}
-  .hero-grid .hero-cta{margin-bottom:34px}
-  .hero-grid .hero-facts{margin-top:34px;padding-top:24px}
-}
-@media (min-width:980px){.hero-grid{grid-template-columns:1.02fr 1fr;gap:56px}}
+.hero-grid{display:grid;gap:30px}
+.hero-copy{max-width:720px}
+@media (min-width:768px){.hero-grid{gap:38px}}
+
 .hero h1{
-  font-size:clamp(42px,9.2vw,86px);
-  font-weight:800;margin-bottom:22px;
+  font-size:clamp(42px,8.4vw,80px);
+  font-weight:800;margin-bottom:20px;
 }
-.lede{font-size:17px;color:var(--ink-soft);max-width:45ch;margin-bottom:32px}
+.lede{font-size:17px;color:var(--ink-soft);max-width:48ch;margin-bottom:30px}
 @media (min-width:768px){.lede{font-size:18px}}
-.hero-cta{display:flex;flex-wrap:wrap;gap:12px;margin-bottom:44px}
-.hero-facts{display:flex;flex-wrap:wrap;gap:14px 40px;padding-top:26px;border-top:1px solid var(--line)}
+.hero-cta{display:flex;flex-wrap:wrap;gap:12px}
+.hero-facts{display:flex;flex-wrap:wrap;gap:16px 44px;padding-top:26px;border-top:1px solid var(--line);margin-top:6px}
 .hero-facts li{display:grid;gap:2px}
 .hero-facts strong{font-size:22px;font-weight:800}
 .hero-facts span{font-size:13px;color:var(--muted)}
 
 .hero-visual{position:relative}
 .hero-stage{
-  position:relative;border-radius:var(--radius-l);
-  background:
-    radial-gradient(120% 90% at 70% 15%, #FFFFFF 0%, #F6F3EC 46%, #EFEAE0 100%);
-  border:1px solid var(--line-soft);
-  padding:32px;display:grid;place-items:center;
-  aspect-ratio:1/.56;overflow:hidden;
+  position:relative;border-radius:var(--radius-l);isolation:isolate;
+  background:#E4AE41;
+  border:0;
+  padding:0;display:block;
+  aspect-ratio:1/.52;overflow:hidden;
 }
-@media (min-width:760px){.hero-stage{aspect-ratio:1/.66}}
-.hero-stage img{position:absolute;left:18px;right:18px;bottom:14px;top:24px;width:auto;height:auto;object-fit:contain;object-position:bottom;filter:drop-shadow(0 20px 26px rgba(20,16,10,.14))}
+@media (min-width:760px){.hero-stage{aspect-ratio:2.88/1}}
+.hero-stage picture,.hero-stage img{position:absolute;inset:0;width:100%;height:100%;display:block}
+.hero-stage img{object-fit:cover;object-position:center right}
 .flag{
-  position:absolute;right:26px;bottom:-7px;width:104px;height:8px;border-radius:999px;
+  display:none;position:absolute;right:26px;bottom:-7px;width:104px;height:8px;border-radius:999px;
   background:linear-gradient(90deg,var(--ink) 0 33%,var(--red) 33% 66%,var(--gold) 66% 100%);
 }
 @media (min-width:768px){.flag{width:140px;height:10px;right:34px;bottom:-9px}}
@@ -378,17 +366,22 @@ body.sheet-open .site-head{opacity:0;pointer-events:none;transition:opacity .2s 
 
 
 /* ---------- floating WhatsApp button ---------- */
-.wa-fab{
+.fab-stack{
   position:fixed;z-index:50;
   right:16px;bottom:calc(16px + env(safe-area-inset-bottom, 0px));
+  display:grid;gap:12px;justify-items:end;
+}
+.fab{
   width:56px;height:56px;border-radius:999px;
-  display:grid;place-items:center;
-  background:#25D366;color:#fff;
+  display:grid;place-items:center;color:#fff;
   box-shadow:0 12px 26px -10px rgba(20,16,10,.55);
   transition:transform .2s var(--ease),box-shadow .2s var(--ease);
 }
-.wa-fab svg{width:30px;height:30px}
-.wa-fab:active{transform:scale(.94)}
-.wa-fab:hover{box-shadow:0 16px 30px -10px rgba(20,16,10,.6)}
-body.sheet-open .wa-fab{opacity:0;pointer-events:none;transition:opacity .2s var(--ease)}
-@media (min-width:980px){.wa-fab{display:none}}
+.fab svg{width:28px;height:28px}
+.fab-wa{background:#25D366}
+.fab-wa svg{width:30px;height:30px}
+.fab-call{background:var(--red)}
+.fab:active{transform:scale(.94)}
+.fab:hover{box-shadow:0 16px 30px -10px rgba(20,16,10,.62)}
+body.sheet-open .fab-stack{opacity:0;pointer-events:none;transition:opacity .2s var(--ease)}
+@media (min-width:980px){.fab-stack{display:none}}
