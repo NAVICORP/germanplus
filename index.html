@@ -3,12 +3,12 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>German Plus | Luxury for your home</title>
-<meta name="description" content="German Plus home and kitchen appliances. Precision built microwaves, air fryers, juicers, blenders, kettles and irons, available across Ghana." />
-<meta name="theme-color" content="#FAF9F7" />
+<title>German Plus | Kitchen &amp; Home Appliances</title>
+<meta name="description" content="German Plus kitchen and home appliances in Ghana. Microwaves, air fryers, blenders, food processors, juicers, kettles and steam irons, with local warranty and service." />
+<meta name="theme-color" content="#C8102E" />
 <link rel="icon" href="assets/brand/favicon.svg" type="image/svg+xml" />
-<meta property="og:title" content="German Plus | Luxury for your home" />
-<meta property="og:description" content="Precision built home and kitchen appliances, available across Ghana." />
+<meta property="og:title" content="German Plus | Kitchen &amp; Home Appliances" />
+<meta property="og:description" content="Kitchen and home appliances built for everyday use, available across Ghana." />
 <meta property="og:type" content="website" />
 <meta property="og:image" content="assets/brand/og.jpg" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -19,35 +19,59 @@
 <body>
 <a class="skip" href="#main">Skip to content</a>
 
-<header class="site-head" id="top">
-  <div class="shell head-inner">
+<header class="topbar" id="top">
+  <div class="shell topbar-inner">
     <a class="brand" href="#top" aria-label="German Plus home">
       <img src="assets/brand/logo.webp" alt="German Plus" width="150" height="57" />
     </a>
-    <nav class="nav-desktop" aria-label="Primary">
-      <a href="#collection">Collection</a>
-      <a href="#craft">Why German Plus</a>
-      <a href="#story">About</a>
-      <a href="#contact">Contact</a>
-    </nav>
-    <div class="head-actions">
-      <a class="btn btn-primary btn-sm" href="https://wa.me/233506690190" target="_blank" rel="noopener">
-        <svg viewBox="0 0 24 24" aria-hidden="true" class="ico"><path fill="currentColor" d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/></svg>
-        WhatsApp
+
+    <form class="search" role="search" id="searchForm" autocomplete="off">
+      <label class="sr-only" for="searchInput">Search for products</label>
+      <input type="search" id="searchInput" placeholder="Search for products" />
+      <button type="submit" class="search-go" aria-label="Search">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="6.4" fill="none" stroke="currentColor" stroke-width="2"/><path d="m16 16 4.5 4.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+      </button>
+      <div class="suggest" id="suggest" hidden></div>
+    </form>
+
+    <div class="topbar-side">
+      <a class="topcall" href="tel:+233506690190">
+        <span class="topcall-ico" aria-hidden="true">
+          <svg viewBox="0 0 24 24"><path fill="currentColor" d="M6.62 10.79a15.05 15.05 0 0 0 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1C10.4 21 3 13.6 3 4.5c0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2Z"/></svg>
+        </span>
+        <span class="topcall-txt">
+          <small>Call us</small>
+          <strong>+233 50 669 0190</strong>
+        </span>
       </a>
       <button class="menu-btn" id="menuBtn" aria-label="Open menu" aria-expanded="false" aria-controls="mobileNav">
-        <span></span><span></span>
+        <span></span><span></span><span></span>
       </button>
     </div>
   </div>
 </header>
 
+<nav class="catbar" aria-label="Categories">
+  <div class="shell catbar-inner">
+    <span class="catbar-all">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+      All Categories
+    </span>
+    <a href="#collection" data-jump="cooking">Cooking</a>
+    <a href="#collection" data-jump="prep">Food Preparation</a>
+    <a href="#collection" data-jump="beverage">Beverage</a>
+    <a href="#collection" data-jump="home">Home Care</a>
+    <a href="#about">About German Plus</a>
+    <a href="#contact">Reach Us</a>
+  </div>
+</nav>
+
 <div class="mobile-nav" id="mobileNav" hidden>
   <nav aria-label="Mobile">
-    <a href="#collection">Collection</a>
-    <a href="#craft">Why German Plus</a>
-    <a href="#story">About</a>
-    <a href="#contact">Contact</a>
+    <a href="#collection">All products</a>
+    <a href="#categories">Categories</a>
+    <a href="#about">About German Plus</a>
+    <a href="#contact">Reach Us</a>
   </nav>
   <a class="btn btn-primary" href="https://wa.me/233506690190" target="_blank" rel="noopener">Enquire on WhatsApp</a>
 </div>
@@ -56,106 +80,136 @@
 
   <section class="hero">
     <div class="shell hero-grid">
-      <div class="hero-copy">
-        <p class="eyebrow reveal">German Plus Ghana</p>
-        <h1 class="reveal">Luxury for <br />your home</h1>
-        <p class="lede reveal">A considered range of kitchen and home appliances, engineered for daily use and finished to last. Selected, stocked and serviced locally.</p>
-        <div class="hero-cta reveal">
-          <a class="btn btn-primary" href="#collection">Explore the collection</a>
-          <a class="btn btn-ghost" href="https://wa.me/233506690190" target="_blank" rel="noopener">Talk to us</a>
+      <div class="slider" id="slider">
+        <div class="slides" id="slides">
+          <article class="slide slide-1">
+            <div class="slide-copy">
+              <p class="slide-kicker">German Plus Ghana</p>
+              <h1>Luxury for your home</h1>
+              <p>Kitchen and home appliances built for daily use.</p>
+              <a class="btn btn-light" href="#collection">Learn More</a>
+            </div>
+            <img src="assets/products/hero-lineup.webp" alt="The German Plus appliance range" width="1500" height="597" fetchpriority="high" />
+          </article>
+          <article class="slide slide-2">
+            <div class="slide-copy">
+              <p class="slide-kicker">Air Fryer 6.5L</p>
+              <h2>Cook healthier, every day</h2>
+              <p>A full family meal in one basket, no oil needed.</p>
+              <a class="btn btn-light" href="#collection" data-open="air-fryer-6-5l">View Details</a>
+            </div>
+            <img src="assets/products/air-fryer-6-5l.webp" alt="German Plus air fryer" width="820" height="620" loading="lazy" />
+          </article>
+          <article class="slide slide-3">
+            <div class="slide-copy">
+              <p class="slide-kicker">Microwave Digital 25L</p>
+              <h2>Precision in every meal</h2>
+              <p>Digital touch controls with preset cooking programmes.</p>
+              <a class="btn btn-light" href="#collection" data-open="microwave-25l">View Details</a>
+            </div>
+            <img src="assets/products/microwave-25l.webp" alt="German Plus microwave" width="820" height="620" loading="lazy" />
+          </article>
         </div>
+        <button class="sl-arrow sl-prev" aria-label="Previous slide"><svg viewBox="0 0 24 24"><path d="M15 5 8 12l7 7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+        <button class="sl-arrow sl-next" aria-label="Next slide"><svg viewBox="0 0 24 24"><path d="m9 5 7 7-7 7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+        <div class="dots" id="dots" role="tablist" aria-label="Slides"></div>
       </div>
-      <div class="hero-visual reveal">
-        <div class="hero-stage">
-          <picture>
-            <source media="(min-width:760px)" srcset="assets/brand/hero-art.webp" />
-            <img src="assets/brand/hero-art-sm.webp" alt="The German Plus range: steam iron, air fryer, microwave, food processor, blender and slow juicer" width="2668" height="926" fetchpriority="high" />
-          </picture>
-        </div>
+
+      <div class="promos">
+        <article class="promo promo-dark">
+          <div>
+            <h3>A kitchen companion<br />like no other.</h3>
+            <a class="btn btn-light btn-sm" href="#collection" data-open="food-processor">Learn More</a>
+          </div>
+          <img src="assets/products/food-processor.webp" alt="German Plus food processor" width="820" height="620" loading="lazy" />
+        </article>
+        <article class="promo promo-red">
+          <div>
+            <h3>Fresh juice,<br />pressed slowly.</h3>
+            <a class="btn btn-light btn-sm" href="#collection" data-open="slow-juicer">Learn More</a>
+          </div>
+          <img src="assets/products/slow-juicer.webp" alt="German Plus slow juicer" width="820" height="620" loading="lazy" />
+        </article>
       </div>
-      <ul class="hero-facts reveal">
-          <li><strong>7</strong><span>Appliances in range</span></li>
-          <li><strong>1 year</strong><span>Warranty support</span></li>
-          <li><strong>Local</strong><span>Service and parts</span></li>
-      </ul>
     </div>
   </section>
 
-  <section class="strip" aria-label="Product categories">
-    <div class="shell strip-inner">
-      <span>Kitchen</span><i></i><span>Home care</span><i></i><span>Food preparation</span><i></i><span>Beverage</span><i></i><span>Everyday essentials</span>
-    </div>
-  </section>
-
-  <section class="section" id="collection">
+  <section class="section" id="categories">
     <div class="shell">
-      <div class="sec-head reveal">
-        <p class="eyebrow">The collection</p>
-        <h2>Seven appliances, <br />one standard</h2>
-        <p class="sec-note">Every product in the range is chosen for build quality, safe daily operation and parts that stay available. Select any item for full details.</p>
-      </div>
+      <h2 class="sec-title">Popular Categories</h2>
+      <div class="cats" id="cats"></div>
+    </div>
+  </section>
 
-      <div class="filters reveal" role="tablist" aria-label="Filter products">
-        <button class="pill is-active" data-filter="all" role="tab" aria-selected="true">All</button>
-        <button class="pill" data-filter="kitchen" role="tab" aria-selected="false">Kitchen</button>
-        <button class="pill" data-filter="home" role="tab" aria-selected="false">Home care</button>
+  <section class="section section-alt" id="collection">
+    <div class="shell">
+      <div class="row-head">
+        <h2 class="sec-title left">Our Appliances</h2>
+        <div class="tabs" id="tabs" role="tablist" aria-label="Filter products">
+          <button class="tab is-active" data-filter="all" role="tab" aria-selected="true">All</button>
+          <button class="tab" data-filter="cooking" role="tab" aria-selected="false">Cooking</button>
+          <button class="tab" data-filter="prep" role="tab" aria-selected="false">Food Preparation</button>
+          <button class="tab" data-filter="beverage" role="tab" aria-selected="false">Beverage</button>
+          <button class="tab" data-filter="home" role="tab" aria-selected="false">Home Care</button>
+        </div>
       </div>
-
+      <p class="result-note" id="resultNote" hidden></p>
       <div class="grid" id="productGrid"></div>
     </div>
   </section>
 
-  <section class="section section-tint" id="craft">
-    <div class="shell">
-      <div class="sec-head reveal">
-        <p class="eyebrow">Why German Plus</p>
-        <h2>Built for the <br />way homes work</h2>
-      </div>
-      <div class="values">
-        <article class="value reveal">
-          <svg viewBox="0 0 24 24" class="v-ico" aria-hidden="true"><path d="M12 3 4 6.5v5.2c0 4.5 3.2 8.4 8 9.3 4.8-.9 8-4.8 8-9.3V6.5L12 3Z" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/><path d="m9 12 2.2 2.2L15.5 10" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          <h3>Tested for safety</h3>
-          <p>Thermal cut outs, stable bases and certified cabling on every electrical product in the range.</p>
-        </article>
-        <article class="value reveal">
-          <svg viewBox="0 0 24 24" class="v-ico" aria-hidden="true"><path d="M4 18V7m5 11V4m5 14v-8m5 8V9" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><path d="M3 21h18" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
-          <h3>Consistent performance</h3>
-          <p>Motors, elements and controls specified for continuous household use rather than occasional bursts.</p>
-        </article>
-        <article class="value reveal">
-          <svg viewBox="0 0 24 24" class="v-ico" aria-hidden="true"><circle cx="12" cy="12" r="8.2" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M12 7.5V12l3 1.8" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          <h3>Service that stays</h3>
-          <p>Warranty handled locally, with replacement parts and accessories held in stock rather than ordered in.</p>
-        </article>
-        <article class="value reveal">
-          <svg viewBox="0 0 24 24" class="v-ico" aria-hidden="true"><path d="M5 20V9.5L12 4l7 5.5V20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/><path d="M9.5 20v-6h5v6" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg>
-          <h3>Finished for the home</h3>
-          <p>Matte blacks, brushed steel and clean control panels that sit comfortably on an open counter.</p>
-        </article>
-      </div>
+  <section class="section">
+    <div class="shell tiles">
+      <article class="tile tile-red">
+        <div>
+          <h3>Air fryer.</h3>
+          <p>Cook healthier.</p>
+          <a class="btn btn-light btn-sm" href="#collection" data-open="air-fryer-6-5l">View Details</a>
+        </div>
+        <img src="assets/products/air-fryer-6-5l.webp" alt="" aria-hidden="true" width="820" height="620" loading="lazy" />
+      </article>
+      <article class="tile tile-gold">
+        <div>
+          <h3>Kettle 2.5L.</h3>
+          <p>Stays hot longer.</p>
+          <a class="btn btn-dark btn-sm" href="#collection" data-open="kettle-2-5l">View Details</a>
+        </div>
+        <img src="assets/products/kettle-2-5l.webp" alt="" aria-hidden="true" width="820" height="620" loading="lazy" />
+      </article>
+      <article class="tile tile-ink">
+        <div>
+          <h3>Steam iron V35.</h3>
+          <p>Crisp every time.</p>
+          <a class="btn btn-light btn-sm" href="#collection" data-open="steam-iron">View Details</a>
+        </div>
+        <img src="assets/products/steam-iron.webp" alt="" aria-hidden="true" width="820" height="620" loading="lazy" />
+      </article>
     </div>
   </section>
 
-  <section class="section" id="story">
-    <div class="shell story">
-      <div class="story-visual reveal">
-        <img src="assets/products/kettle-2-5l.webp" alt="German Plus 2.5 litre electric kettle in champagne gold" width="1000" height="760" loading="lazy" />
-      </div>
-      <div class="story-copy reveal">
-        <p class="eyebrow">The brand</p>
-        <h2>A German name, <br />a Ghanaian home</h2>
-        <p>German Plus brings a focused range of home and kitchen appliances to Ghanaian households: the pieces a kitchen genuinely uses, made properly, priced fairly and backed after the sale.</p>
+  <section class="section section-alt" id="about">
+    <div class="shell about">
+      <div class="about-copy">
+        <h2 class="sec-title left">About German Plus</h2>
+        <p>German Plus brings a focused range of kitchen and home appliances to Ghanaian households: the pieces a kitchen genuinely uses, made properly and backed after the sale.</p>
         <p>Rather than stocking everything, the range stays deliberately short. Each appliance earns its place on the counter, and each one is supported by people you can reach on the phone.</p>
-        <a class="btn btn-ghost" href="#contact">Visit the showroom</a>
+        <ul class="about-points">
+          <li><strong>Tested for safety</strong><span>Thermal cut outs, stable bases and certified cabling.</span></li>
+          <li><strong>Consistent performance</strong><span>Specified for continuous household use.</span></li>
+          <li><strong>Service that stays</strong><span>Warranty handled locally, parts held in stock.</span></li>
+        </ul>
+      </div>
+      <div class="about-visual">
+        <img src="assets/brand/hero-art-sm.webp" alt="The German Plus range" width="1600" height="717" loading="lazy" />
       </div>
     </div>
   </section>
 
-  <section class="section contact" id="contact">
+  <section class="section" id="contact">
     <div class="shell">
-      <div class="contact-card reveal">
+      <div class="contact-card">
         <div class="contact-main">
-          <p class="eyebrow">Enquiries</p>
+          <p class="eyebrow">Reach us</p>
           <h2>Tell us which <br />appliance you need</h2>
           <p class="sec-note">Send a message with the product name and we will confirm availability, current stock and directions to the showroom.</p>
           <div class="contact-cta">
@@ -186,23 +240,34 @@
 <footer class="site-foot">
   <div class="shell foot-inner">
     <div class="foot-brand">
-      <img src="assets/brand/logo-light.webp" alt="German Plus" width="152" height="58" loading="lazy" />
-      <p>Luxury for your home</p>
+      <img src="assets/brand/logo.webp" alt="German Plus" width="152" height="58" loading="lazy" />
+      <p>German Plus brings quality kitchen and home appliances to households across Ghana.</p>
     </div>
-    <nav class="foot-nav" aria-label="Footer">
-      <a href="#collection">Collection</a>
-      <a href="#craft">Why German Plus</a>
-      <a href="#story">About</a>
-      <a href="#contact">Contact</a>
-    </nav>
-    <div class="foot-meta">
-      <p>+233 50 669 0190</p>
+    <div class="foot-col">
+      <h4>Categories</h4>
+      <a href="#collection" data-jump="cooking">Cooking</a>
+      <a href="#collection" data-jump="prep">Food Preparation</a>
+      <a href="#collection" data-jump="beverage">Beverage</a>
+      <a href="#collection" data-jump="home">Home Care</a>
+    </div>
+    <div class="foot-col">
+      <h4>Company</h4>
+      <a href="#about">About German Plus</a>
+      <a href="#collection">Our Appliances</a>
+      <a href="#contact">Reach Us</a>
+    </div>
+    <div class="foot-col">
+      <h4>Contact</h4>
+      <a href="tel:+233506690190">+233 50 669 0190</a>
       <a href="https://wa.me/233506690190" target="_blank" rel="noopener">Enquire on WhatsApp</a>
+      <span>Accra, Ghana</span>
     </div>
   </div>
-  <div class="shell foot-base">
-    <p>&copy; <span id="yr">2026</span> German Plus. All rights reserved.</p>
-    <p class="credit">Designed and developed by <a href="https://skifi.co" target="_blank" rel="noopener">SkiFi Designs</a></p>
+  <div class="foot-base">
+    <div class="shell foot-base-inner">
+      <p>&copy; <span id="yr">2026</span> German Plus. All rights reserved.</p>
+      <p class="credit">Designed and developed by <a href="https://skifi.co" target="_blank" rel="noopener">SkiFi Designs</a></p>
+    </div>
   </div>
 </footer>
 
@@ -213,7 +278,7 @@
       <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 6 12 12M18 6 6 18" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
     </button>
     <div class="sheet-body">
-      <div class="sheet-visual"><img id="sheetImg" src="" alt="" width="1000" height="760" /></div>
+      <div class="sheet-visual"><img id="sheetImg" src="" alt="" width="820" height="620" /></div>
       <div class="sheet-copy">
         <p class="eyebrow" id="sheetCat"></p>
         <h2 id="sheetTitle"></h2>
@@ -226,12 +291,12 @@
 </div>
 
 <div class="fab-stack">
-<a class="fab fab-call" href="tel:+233506690190" aria-label="Call German Plus">
-  <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M6.62 10.79a15.05 15.05 0 0 0 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1C10.4 21 3 13.6 3 4.5c0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2Z"/></svg>
-</a>
-<a class="fab fab-wa" href="https://wa.me/233506690190" target="_blank" rel="noopener" aria-label="Enquire on WhatsApp">
-  <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/></svg>
-</a>
+  <a class="fab fab-call" href="tel:+233506690190" aria-label="Call German Plus">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M6.62 10.79a15.05 15.05 0 0 0 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1C10.4 21 3 13.6 3 4.5c0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2Z"/></svg>
+  </a>
+  <a class="fab fab-wa" href="https://wa.me/233506690190" target="_blank" rel="noopener" aria-label="Enquire on WhatsApp">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/></svg>
+  </a>
 </div>
 
 <script src="script.js"></script>
