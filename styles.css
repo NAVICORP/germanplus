@@ -364,6 +364,10 @@ body.sheet-open .fab-stack{opacity:0;pointer-events:none}
 
 /* ---------- small screens ---------- */
 @media (max-width:599px){
+  .card .tag{display:none}
+  .card-cat{display:none}
+  .card-body{gap:4px}
+  .card-more{margin-top:6px}
   .section{padding:36px 0}
   .sec-title{margin-bottom:20px}
   .contact-cta .btn{width:100%}
