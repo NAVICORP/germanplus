@@ -52,7 +52,7 @@ function render() {
         <span class="card-more">Read More ${arrow}</span>
       </div>
     </button>`).join('')
-    : `<p class="empty">No products match that search. Try another word, or message us on WhatsApp and we will help.</p>`;
+    : `<p class="empty">No products match that search. Try another word, or email us and we will help.</p>`;
 
   if (note) {
     if (query) {
@@ -175,7 +175,7 @@ function openSheet(id) {
   document.getElementById('sheetDesc').textContent = p.desc;
   document.getElementById('sheetSpec').innerHTML = (p.spec || []).map(s => `<li><span>${esc(s[0])}</span><span>${esc(s[1])}</span></li>`).join('');
   document.getElementById('sheetWa').href =
-    `https://wa.me/${WA}?text=${encodeURIComponent('Hello German Plus, I would like details on the ' + p.name + '.')}`;
+    `mailto:germanplusgs@gmail.com?subject=${encodeURIComponent('Enquiry: ' + p.name)}&body=${encodeURIComponent('Hello German Plus, I would like details on the ' + p.name + '.')}`;
   sheet.hidden = false;
   document.body.style.overflow = 'hidden';
   document.body.classList.add('sheet-open');
