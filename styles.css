@@ -351,8 +351,7 @@ input{font:inherit}
 .fab-stack{position:fixed;z-index:50;right:16px;bottom:calc(16px + env(safe-area-inset-bottom,0px));display:grid;gap:12px;justify-items:end}
 .fab{width:56px;height:56px;border-radius:999px;display:grid;place-items:center;color:#fff;box-shadow:0 12px 26px -10px rgba(20,16,10,.55);transition:transform .2s var(--ease),box-shadow .2s var(--ease)}
 .fab svg{width:28px;height:28px}
-.fab-wa{background:#25D366}
-.fab-wa svg{width:30px;height:30px}
+.fab-mail{background:var(--red)}
 .fab-call{background:var(--red)}
 .fab:active{transform:scale(.94)}
 body.sheet-open .fab-stack{opacity:0;pointer-events:none}
