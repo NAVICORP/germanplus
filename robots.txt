@@ -1,3 +1,7 @@
 User-agent: *
 Allow: /
 Disallow: /admin
+Disallow: /rest/
+Disallow: /auth/
+
+Sitemap: https://germanplusgh.com/sitemap.xml

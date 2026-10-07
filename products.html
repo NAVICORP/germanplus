@@ -6,28 +6,38 @@
 <title>All Products | German Plus</title>
 <meta name="description" content="The full German Plus range: microwaves, air fryers, ovens, gas stoves, blenders, stand mixers, juicers, kettles, cookware, dinner sets and kitchen storage." />
 <meta name="theme-color" content="#C8102E" />
-<link rel="icon" href="assets/brand/favicon.svg" type="image/svg+xml" />
+<link rel="icon" href="/assets/brand/favicon.svg" type="image/svg+xml" />
+<link rel="apple-touch-icon" href="/assets/brand/favicon.svg" />
 <meta property="og:title" content="All Products | German Plus" />
 <meta property="og:description" content="The full German Plus range of kitchen and home appliances." />
 <meta property="og:type" content="website" />
-<meta property="og:image" content="assets/brand/og.jpg" />
+<link rel="canonical" href="https://germanplusgh.com/products" />
+<meta name="robots" content="index, follow, max-image-preview:large" />
+<meta property="og:url" content="https://germanplusgh.com/products" />
+<meta property="og:site_name" content="German Plus" />
+<meta property="og:locale" content="en_GH" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta property="og:image" content="https://germanplusgh.com/assets/brand/og.jpg" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
-<link rel="stylesheet" href="styles.css" />
+<link rel="stylesheet" href="/styles.css" />
+<!--jsonld-->
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
 
 <header class="topbar" id="top">
   <div class="shell topbar-inner">
-    <a class="brand" href="index.html" aria-label="German Plus home">
-      <img src="assets/brand/logo.webp" alt="German Plus" width="150" height="57" />
+    <a class="brand" href="/" aria-label="German Plus home">
+      <img src="/assets/brand/logo.webp" alt="German Plus" width="150" height="57" />
     </a>
 
-    <form class="search" role="search" id="searchForm" autocomplete="off">
+    <form class="search" role="search" id="searchForm" action="/products" method="get" autocomplete="off">
       <label class="sr-only" for="searchInput">Search for products</label>
-      <input type="search" id="searchInput" placeholder="Search for products" />
+      <input type="search" id="searchInput" name="q" placeholder="Search for products" />
       <button type="submit" class="search-go" aria-label="Search">
         <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="6.4" fill="none" stroke="currentColor" stroke-width="2"/><path d="m16 16 4.5 4.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
       </button>
@@ -35,7 +45,7 @@
     </form>
 
     <div class="topbar-side">
-      <a class="admin-btn" href="/admin/" rel="nofollow">
+      <a class="admin-btn" href="https://germanplus.skifi.co/admin/" rel="nofollow">
         <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3 5 6v5.5c0 4.2 2.9 7.9 7 9.5 4.1-1.6 7-5.3 7-9.5V6l-7-3Z" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linejoin="round"/><circle cx="12" cy="10.2" r="2.3" fill="none" stroke="currentColor" stroke-width="1.9"/><path d="M8.4 16.2c.8-1.6 2.1-2.4 3.6-2.4s2.8.8 3.6 2.4" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"/></svg>
         <span>Admin</span>
       </a>
@@ -52,32 +62,32 @@
       <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
       All Categories
     </span>
-    <a href="#collection" data-jump="cooking">Cooking</a>
-    <a href="#collection" data-jump="prep">Food Preparation</a>
-    <a href="#collection" data-jump="beverage">Beverage</a>
-    <a href="#collection" data-jump="cookware">Cookware</a>
-    <a href="#collection" data-jump="home">Home Care</a>
-    <a href="index.html#about">About German Plus</a>
-    <a href="index.html#contact">Reach Us</a>
+    <a href="/c/cooking" data-jump="cooking">Cooking</a>
+    <a href="/c/prep" data-jump="prep">Food Preparation</a>
+    <a href="/c/beverage" data-jump="beverage">Beverage</a>
+    <a href="/c/cookware" data-jump="cookware">Cookware</a>
+    <a href="/c/home" data-jump="home">Home Care</a>
+    <a href="/#about">About German Plus</a>
+    <a href="/#contact">Reach Us</a>
   </div>
 </nav>
 
 <div class="mobile-nav" id="mobileNav" hidden>
   <nav aria-label="Mobile">
-    <a href="products.html">All products</a>
-    <a href="index.html#categories">Categories</a>
-    <a href="index.html#about">About German Plus</a>
-    <a href="index.html#contact">Reach Us</a>
+    <a href="/products">All products</a>
+    <a href="/#categories">Categories</a>
+    <a href="/#about">About German Plus</a>
+    <a href="/#contact">Reach Us</a>
   </nav>
   <a class="btn btn-primary" href="mailto:germanplusgs@gmail.com">Email us</a>
 </div>
 
 <main id="main">
-
+<!--main:start-->
   <section class="page-head">
     <div class="shell">
       <nav class="crumbs" aria-label="Breadcrumb">
-        <a href="index.html">Home</a>
+        <a href="/">Home</a>
         <span aria-hidden="true">/</span>
         <span>All Products</span>
       </nav>
@@ -103,6 +113,7 @@
       <div class="grid" id="productGrid"></div>
     </div>
   </section>
+<!--main:end-->
 
   <section class="section section-alt">
     <div class="shell">
@@ -129,23 +140,23 @@
 <footer class="site-foot">
   <div class="shell foot-inner">
     <div class="foot-brand">
-      <img src="assets/brand/logo.webp" alt="German Plus" width="152" height="58" loading="lazy" />
+      <img src="/assets/brand/logo.webp" alt="German Plus" width="152" height="58" loading="lazy" />
       <p>German Plus brings quality kitchen and home appliances to households across Ghana.</p>
     </div>
     <div class="foot-col">
       <h4>Categories</h4>
-      <a href="#collection" data-jump="cooking">Cooking</a>
-      <a href="#collection" data-jump="prep">Food Preparation</a>
-      <a href="#collection" data-jump="beverage">Beverage</a>
-      <a href="#collection" data-jump="cookware">Cookware &amp; Tableware</a>
-      <a href="#collection" data-jump="home">Home Care</a>
+      <a href="/c/cooking" data-jump="cooking">Cooking</a>
+      <a href="/c/prep" data-jump="prep">Food Preparation</a>
+      <a href="/c/beverage" data-jump="beverage">Beverage</a>
+      <a href="/c/cookware" data-jump="cookware">Cookware &amp; Tableware</a>
+      <a href="/c/home" data-jump="home">Home Care</a>
     </div>
     <div class="foot-col">
       <h4>Company</h4>
-      <a href="index.html#about">About German Plus</a>
-      <a href="products.html">All Products</a>
-      <a href="index.html#contact">Reach Us</a>
-      <a href="/admin/" rel="nofollow">Admin</a>
+      <a href="/#about">About German Plus</a>
+      <a href="/products">All Products</a>
+      <a href="/#contact">Reach Us</a>
+      <a href="https://germanplus.skifi.co/admin/" rel="nofollow">Admin</a>
     </div>
     <div class="foot-col">
       <h4>Contact</h4>
@@ -186,7 +197,7 @@
   </a>
 </div>
 
-<script src="data.js"></script>
-<script src="script.js"></script>
+<script src="/data.js"></script>
+<script src="/script.js"></script>
 </body>
 </html>

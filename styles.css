@@ -390,6 +390,14 @@ body.sheet-open .fab-stack{opacity:0;pointer-events:none}
 .more-wrap .ico{width:16px;height:16px}
 
 /* ---------- page head ---------- */
+/* ---------- product page ---------- */
+.pdp-head{padding-bottom:0}
+.pdp-section{padding-top:18px}
+.pdp{display:grid;gap:26px}
+@media (min-width:880px){.pdp{grid-template-columns:1fr 1fr;gap:48px;align-items:start}.pdp-visual{position:sticky;top:150px}}
+.pdp-copy h1{font-size:clamp(26px,4vw,38px);line-height:1.15;margin-bottom:12px}
+.pdp-copy > p.pdp-lead{color:var(--ink);font-weight:600;margin-bottom:12px}
+.pdp-cta{display:flex;flex-wrap:wrap;gap:10px}
 .page-head{padding:30px 0 6px}
 @media (min-width:768px){.page-head{padding:40px 0 10px}}
 .crumbs{display:flex;gap:8px;align-items:center;font-size:13px;color:var(--muted);margin-bottom:14px}

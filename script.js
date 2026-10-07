@@ -4,8 +4,8 @@ const suggest = document.getElementById('suggest');
 /* Text from the catalogue is written into the page escaped; photos added in
    the admin come as /media/<id>, the site's own as assets/products/<id>.webp. */
 const esc = s => String(s ?? '').replace(/[&<>"']/g, ch => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[ch]));
-const imgOf = p => p.img || `assets/products/${p.id}.webp`;
-const catImg = c => { const p = PRODUCTS.find(x => x.id === c.img); return p ? imgOf(p) : `assets/products/${c.img}.webp`; };
+const imgOf = p => p.img || `/assets/products/${p.id}.webp`;
+const catImg = c => { const p = PRODUCTS.find(x => x.id === c.img); return p ? imgOf(p) : `/assets/products/${c.img}.webp`; };
 const arrow = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h13M12.5 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>';
 const grid = document.getElementById('productGrid');
 const note = document.getElementById('resultNote');
@@ -15,7 +15,7 @@ let io;
 const catsEl = document.getElementById('cats');
 if (catsEl) catsEl.innerHTML = CATEGORIES.map(c => {
   const n = PRODUCTS.filter(p => p.cat === c.key).length;
-  return `<a class="cat reveal" href="#collection" data-jump="${esc(c.key)}">
+  return `<a class="cat reveal" href="/c/${esc(c.key)}" data-jump="${esc(c.key)}">
     <img src="${esc(catImg(c))}" alt="" aria-hidden="true" width="180" height="180" loading="lazy" />
     <strong>${esc(c.name)}</strong>
     <span>${n} product${n === 1 ? '' : 's'}</span>
@@ -36,12 +36,13 @@ function matches(p) {
 const LIMIT = parseInt(document.body.dataset.limit || '0', 10);
 
 function render() {
+  if (!grid) return;
   const all = PRODUCTS.filter(matches);
   const list = LIMIT ? all.slice(0, LIMIT) : all;
   const more = document.getElementById('moreWrap');
   if (more) more.hidden = !(LIMIT && all.length > LIMIT);
   grid.innerHTML = list.length ? list.map(p => `
-    <button class="card reveal" data-id="${esc(p.id)}" aria-label="View details for ${esc(p.name)}">
+    <a class="card reveal" href="/p/${esc(p.id)}" data-id="${esc(p.id)}" aria-label="View details for ${esc(p.name)}">
       <div class="card-media">
         <span class="tag">${esc(p.tag)}</span>
         <img src="${esc(imgOf(p))}" alt="${esc(p.name)}" width="820" height="620" loading="lazy" />
@@ -51,7 +52,7 @@ function render() {
         <p class="card-cat">${esc(p.labels)}</p>
         <span class="card-more">Read More ${arrow}</span>
       </div>
-    </button>`).join('')
+    </a>`).join('')
     : `<p class="empty">No products match that search. Try another word, or email us and we will help.</p>`;
 
   if (note) {
@@ -79,7 +80,7 @@ render();
     const first = links[0];
     CATEGORIES.forEach(c => {
       const a = document.createElement('a');
-      a.href = '#collection';
+      a.href = '/c/' + c.key;
       a.dataset.jump = c.key;
       a.textContent = c.name;
       parent.insertBefore(a, first);
@@ -116,7 +117,7 @@ document.querySelectorAll('.tab').forEach(btn => {
 });
 
 function jumpTo(cat) {
-  if (!document.getElementById('collection')) { window.location.href = 'products.html?cat=' + cat; return; }
+  if (!document.getElementById('collection')) { window.location.href = '/c/' + cat; return; }
   input.value = '';
   query = '';
   suggest.hidden = true;
@@ -124,11 +125,15 @@ function jumpTo(cat) {
   if (btn) btn.click(); else render();
   document.getElementById('collection').scrollIntoView({ behavior: 'smooth', block: 'start' });
 }
+/* Links are real pages; a plain click stays on the page and filters or opens
+   the details in place. A click with a modifier key opens the page. */
+const plainClick = e => !(e.metaKey || e.ctrlKey || e.shiftKey || e.altKey || e.button);
 document.addEventListener('click', e => {
+  if (!plainClick(e)) return;
   const j = e.target.closest('[data-jump]');
   if (j) { e.preventDefault(); jumpTo(j.dataset.jump); return; }
   const o = e.target.closest('[data-open]');
-  if (o) { e.preventDefault(); openSheet(o.dataset.open); }
+  if (o && sheet) { e.preventDefault(); openSheet(o.dataset.open); }
 });
 
 /* ---- search ---- */
@@ -137,7 +142,7 @@ function renderSuggest() {
   if (!q) { suggest.hidden = true; return; }
   const hits = PRODUCTS.filter(p => (p.name + ' ' + p.labels).toLowerCase().includes(q)).slice(0, 5);
   suggest.innerHTML = hits.length
-    ? hits.map(p => `<a href="#collection" data-open="${esc(p.id)}"><img src="${esc(imgOf(p))}" alt="" aria-hidden="true" /><span><strong>${esc(p.name)}</strong><small>${esc(p.labels)}</small></span></a>`).join('')
+    ? hits.map(p => `<a href="/p/${esc(p.id)}" data-open="${esc(p.id)}"><img src="${esc(imgOf(p))}" alt="" aria-hidden="true" /><span><strong>${esc(p.name)}</strong><small>${esc(p.labels)}</small></span></a>`).join('')
     : '<p>No products match that search.</p>';
   suggest.hidden = false;
 }
@@ -151,6 +156,7 @@ document.addEventListener('click', e => {
   if (!form.contains(e.target)) suggest.hidden = true;
 });
 form.addEventListener('submit', e => {
+  if (!grid) return;  // product pages: the form goes to /products?q=
   e.preventDefault();
   query = input.value.trim().toLowerCase();
   suggest.hidden = true;
@@ -187,12 +193,12 @@ function closeSheet() {
   document.body.classList.remove('sheet-open');
   if (lastFocus) lastFocus.focus();
 }
-grid.addEventListener('click', e => {
+if (grid) grid.addEventListener('click', e => {
   const card = e.target.closest('.card');
-  if (card) openSheet(card.dataset.id);
+  if (card && plainClick(e)) { e.preventDefault(); openSheet(card.dataset.id); }
 });
-sheet.addEventListener('click', e => { if (e.target.hasAttribute('data-close')) closeSheet(); });
-document.addEventListener('keydown', e => { if (e.key === 'Escape' && !sheet.hidden) closeSheet(); });
+if (sheet) sheet.addEventListener('click', e => { if (e.target.hasAttribute('data-close')) closeSheet(); });
+document.addEventListener('keydown', e => { if (e.key === 'Escape' && sheet && !sheet.hidden) closeSheet(); });
 
 /* ---- hero slider ---- */
 const slidesEl = document.getElementById('slides');
@@ -272,7 +278,7 @@ document.getElementById('yr').textContent = new Date().getFullYear();
 /* ---- deep links ---- */
 (() => {
   const params = new URLSearchParams(location.search);
-  const c = params.get('cat');
+  const c = params.get('cat') || document.body.dataset.cat;
   const q = params.get('q');
   if (q) { input.value = q; query = q.trim().toLowerCase(); }
   if (c) {

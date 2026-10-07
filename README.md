@@ -21,6 +21,21 @@ Product showcase website for German Plus home and kitchen appliances, Ghana, wit
 
 ## Deploying
 
-Dokploy, project "German Plus", Docker Compose from GitHub (NAVICORP/germanplus, branch main, compose path `./deploy/docker-compose.yml`, autodeploy on). Domain `germanplus.skifi.co` to service `site`, port 8000, HTTPS. DNS: an A record for `germanplus` to the SkiFi server.
+Dokploy, project "German Plus", Docker Compose from GitHub (NAVICORP/germanplus, branch main, compose path `./deploy/docker-compose.yml`, autodeploy on). Domains on service `site`, port 8000, HTTPS (Let's Encrypt): `germanplusgh.com`, `www.germanplusgh.com` and `germanplus.skifi.co`. DNS: at GoDaddy, `germanplusgh.com` has an A record to the SkiFi server and `www` a CNAME to it; `germanplus` on skifi.co has an A record to the same server.
+
+## Addresses
+
+- `germanplusgh.com` is the public site. `www.germanplusgh.com` redirects to it.
+- `germanplus.skifi.co` is the admin, at `/admin`, because the SkiFi sign in works on skifi.co addresses. Its public pages redirect to germanplusgh.com, and `/admin` on germanplusgh.com redirects here.
+- Set by `SITE_URL` and `ADMIN_URL` in `deploy/docker-compose.yml`.
+
+## Search engines and AI assistants
+
+`server/pages.mjs` writes the public pages on the server from the catalogue, so they read the same with or without the script:
+
+- `/`, `/products`, `/c/<category>` and `/p/<product>`, each with a canonical address, link previews and schema.org data (Store, WebSite, CollectionPage, Product, BreadcrumbList).
+- `/sitemap.xml` lists every page with its product photo. `/robots.txt` points to it and keeps `/admin` out.
+- `/llms.txt` and `/llms-full.txt` describe the shop and every product in plain text for AI assistants.
+- A product added in the admin gets its page, sitemap entry and llms.txt line straight away.
 
 Designed and built by SkiFi Designs.
