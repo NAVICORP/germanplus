@@ -82,7 +82,7 @@ export function makePages({ root, email }) {
       html = html.replace(/<meta property="og:image" content="[^"]*" \/>/, `<meta property="og:image" content="${esc(base + image)}" />`)
         .replace(/<meta property="og:image:width" content="[^"]*" \/>\n<meta property="og:image:height" content="[^"]*" \/>\n/, '');
     } else {
-      html = html.replace(/<meta property="og:image" content="[^"]*" \/>/, `<meta property="og:image" content="${esc(base)}/assets/brand/og.jpg?v=2" />`);
+      html = html.replace(/<meta property="og:image" content="[^"]*" \/>/, `<meta property="og:image" content="${esc(base)}/assets/brand/og.jpg?v=3" />`);
     }
     return html.replace('<!--jsonld-->', jsonld.map(ld).join('\n'));
   }
@@ -91,7 +91,7 @@ export function makePages({ root, email }) {
 
   const store = (base) => ({
     '@type': 'Store', '@id': `${base}/#store`, name: 'German Plus', url: `${base}/`,
-    logo: `${base}/assets/brand/logo.webp`, image: `${base}/assets/brand/og.jpg?v=2`,
+    logo: `${base}/assets/brand/logo.webp`, image: `${base}/assets/brand/og.jpg?v=3`,
     description: STORE_DESC, email,
     address: { '@type': 'PostalAddress', addressLocality: 'Accra', addressCountry: 'GH' },
     areaServed: { '@type': 'Country', name: 'Ghana' },
