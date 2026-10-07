@@ -210,7 +210,8 @@ input{font:inherit}
 
 /* ---------- categories ---------- */
 .cats{display:grid;gap:12px;grid-template-columns:repeat(2,1fr)}
-@media (min-width:640px){.cats{grid-template-columns:repeat(4,1fr);gap:16px}}
+@media (min-width:640px){.cats{grid-template-columns:repeat(3,1fr);gap:16px}}
+@media (min-width:960px){.cats{grid-template-columns:repeat(5,1fr)}}
 .cat{
   background:var(--surface);border:1px solid var(--line-soft);border-radius:var(--r);
   padding:22px 14px 20px;display:grid;justify-items:center;gap:4px;text-align:center;

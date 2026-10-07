@@ -44,7 +44,7 @@ function render() {
         <span class="card-more">Read More ${arrow}</span>
       </div>
     </button>`).join('')
-    : `<p class="empty">No appliances match that search. Try another word, or message us on WhatsApp and we will help.</p>`;
+    : `<p class="empty">No products match that search. Try another word, or message us on WhatsApp and we will help.</p>`;
 
   if (note) {
     if (query) {
@@ -92,7 +92,7 @@ function renderSuggest() {
   const hits = PRODUCTS.filter(p => (p.name + ' ' + p.labels).toLowerCase().includes(q)).slice(0, 5);
   suggest.innerHTML = hits.length
     ? hits.map(p => `<a href="#collection" data-open="${p.id}"><img src="assets/products/${p.id}.webp" alt="" aria-hidden="true" /><span><strong>${p.name}</strong><small>${p.labels}</small></span></a>`).join('')
-    : '<p>No appliances match that search.</p>';
+    : '<p>No products match that search.</p>';
   suggest.hidden = false;
 }
 input.addEventListener('input', () => {
