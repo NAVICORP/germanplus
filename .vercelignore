@@ -1,0 +1,8 @@
+# The server, database and deploy files are for SkiFi's own server, not for a static host.
+server
+supabase
+tools
+deploy
+Dockerfile
+.dockerignore
+README.md
