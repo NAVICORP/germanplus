@@ -220,7 +220,3 @@ const CATEGORIES = [
   { key: 'cookware', name: 'Cookware & Tableware', img: 'cookware-set-16pc' },
   { key: 'home',     name: 'Home Care',           img: 'steam-iron' }
 ];
-
-const form = document.getElementById('searchForm');
-const input = document.getElementById('searchInput');
-const suggest = document.getElementById('suggest');
