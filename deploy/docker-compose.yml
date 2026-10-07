@@ -94,6 +94,9 @@ services:
       - "8000"
     environment:
       API_INTERNAL: http://germanplus-api:8000
+      # The public address, and the address the admin and its sign in live on.
+      SITE_URL: https://germanplusgh.com
+      ADMIN_URL: https://germanplus.skifi.co
     depends_on:
       - api
     healthcheck:

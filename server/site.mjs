@@ -12,11 +12,22 @@ import { createReadStream, readFileSync, statSync } from 'node:fs';
 import path from 'node:path';
 import { Readable } from 'node:stream';
 import zlib from 'node:zlib';
+import { makePages } from './pages.mjs';
 
 const ROOT = path.resolve(process.env.SITE_ROOT || path.join(import.meta.dirname, '..', 'web'));
 const API = (process.env.API_INTERNAL || 'http://germanplus-api:8000').replace(/\/$/, '');
 const PORT = Number(process.env.PORT || 8000);
 const WA = process.env.GP_WHATSAPP || '233506690190';
+/* The public address (germanplusgh.com) and the admin's address
+   (germanplus.skifi.co, where the SkiFi sign in works). When SITE_URL is set,
+   www and the admin address send visitors of the public pages to it, and
+   /admin on the public address goes to the admin's address. */
+const SITE_URL = (process.env.SITE_URL || '').replace(/\/$/, '');
+const ADMIN_URL = (process.env.ADMIN_URL || '').replace(/\/$/, '');
+const SITE_HOST = SITE_URL ? new URL(SITE_URL).host : '';
+const ADMIN_HOST = ADMIN_URL ? new URL(ADMIN_URL).host : '';
+const EMAIL = process.env.GP_EMAIL || 'germanplusgs@gmail.com';
+const pages = makePages({ root: ROOT, email: EMAIL });
 
 const TYPES = {
   '.html': 'text/html; charset=utf-8', '.js': 'text/javascript; charset=utf-8', '.css': 'text/css; charset=utf-8',
@@ -147,17 +158,23 @@ async function proxy(req, res) {
    the database, kept for 20 seconds, so a change in the admin shows on the
    site straight away. If the database cannot be reached, the static data.js
    in the repo is sent instead. */
-let catalogCache = { at: 0, js: null };
-async function dataJs() {
-  if (catalogCache.js && Date.now() - catalogCache.at < 20000) return catalogCache.js;
+let catalogCache = { at: 0, c: null, js: null };
+async function catalog() {
+  if (catalogCache.c && Date.now() - catalogCache.at < 20000) return catalogCache.c;
   const r = await fetch(`${API}/rest/v1/rpc/catalog`, { signal: AbortSignal.timeout(2500) });
   if (!r.ok) throw new Error(`catalog ${r.status}`);
   const c = await r.json();
   if (!c || !Array.isArray(c.products) || !Array.isArray(c.categories)) throw new Error('catalog shape');
-  const safe = (v) => JSON.stringify(v).replace(/</g, '\\u003c').replace(/[\u2028\u2029]/g, '');
+  catalogCache = { at: Date.now(), c, js: null };
+  return c;
+}
+const safe = (v) => JSON.stringify(v).replace(/</g, '\\u003c').replace(/[\u2028\u2029]/g, '');
+async function dataJs() {
+  const c = await catalog();
+  if (catalogCache.js) return catalogCache.js;
   const js = `/* German Plus catalogue, from the database${c.updated_at ? `, last changed ${c.updated_at}` : ''}. */\n` +
     `const WA = ${JSON.stringify(WA)};\n\nconst PRODUCTS = ${safe(c.products)};\n\nconst CATEGORIES = ${safe(c.categories)};\n`;
-  catalogCache = { at: Date.now(), js };
+  catalogCache.js = js;
   return js;
 }
 
@@ -188,6 +205,43 @@ async function media(req, res, id) {
   res.end(hit.body);
 }
 
+// ---------------------------------------------------------------- the public pages
+const PUBLIC = /^\/($|products$|[pc]\/[a-z0-9-]+$|sitemap\.xml$|llms(-full)?\.txt$)/;
+const HTML = 'text/html; charset=utf-8';
+function redirect(res, code, location) {
+  res.writeHead(code, { location, 'cache-control': code === 301 ? 'public, max-age=3600' : 'no-cache' });
+  res.end();
+}
+/* The address links and structured data point to: the public address when it
+   is set, otherwise whatever address this request came in on. */
+const baseFor = (req) => SITE_URL || `${String(req.headers['x-forwarded-proto'] || 'http').split(',')[0]}://${req.headers.host}`;
+
+async function page(req, res, p) {
+  const base = baseFor(req);
+  let c;
+  try { c = await catalog(); } catch (e) {
+    console.error('catalog:', e.message);
+    if (p === '/' || p === '/products') return false;   // the plain files still work
+    res.writeHead(503, { 'content-type': 'text/plain', 'retry-after': '30' });
+    return res.end('The catalogue is loading. Try again in a moment.');
+  }
+  let body = null, type = HTML;
+  if (p === '/') body = pages.home(c, base);
+  else if (p === '/products') body = pages.products(c, base);
+  else if (p.startsWith('/c/')) body = pages.category(c, base, p.slice(3));
+  else if (p.startsWith('/p/')) body = pages.product(c, base, p.slice(3));
+  else if (p === '/sitemap.xml') { body = pages.sitemap(c, base); type = 'application/xml; charset=utf-8'; }
+  else if (p === '/llms.txt') { body = pages.llms(c, base, false); type = 'text/plain; charset=utf-8'; }
+  else if (p === '/llms-full.txt') { body = pages.llms(c, base, true); type = 'text/plain; charset=utf-8'; }
+  if (body == null) {
+    const html = pages.notFound(base);
+    const buf = Buffer.from(html);
+    res.writeHead(404, { ...SECURITY, 'content-type': HTML, 'content-length': String(buf.length), 'cache-control': 'no-cache' });
+    return res.end(req.method === 'HEAD' ? undefined : buf);
+  }
+  return sendText(req, res, body, type, 'no-cache');
+}
+
 // ---------------------------------------------------------------- requests
 async function handle(req, res) {
   const url = new URL(req.url, 'http://x');
@@ -197,14 +251,37 @@ async function handle(req, res) {
     res.writeHead(200, { 'content-type': 'application/json' });
     return res.end('{"ok":true}');
   }
+
+  // One address for the public pages, one for the admin.
+  const host = String(req.headers.host || '').toLowerCase().split(':')[0];
+  if (SITE_HOST && (req.method === 'GET' || req.method === 'HEAD')) {
+    if (host === `www.${SITE_HOST}`) return redirect(res, 301, SITE_URL + req.url);
+    if (host === SITE_HOST && ADMIN_URL && /^\/admin(\/|$)/.test(p)) return redirect(res, 302, ADMIN_URL + req.url);
+    if (host === ADMIN_HOST && (PUBLIC.test(p) || p === '/index.html' || p === '/products.html')) {
+      const to = p === '/index.html' ? '/' : p === '/products.html' ? '/products' : p;
+      return redirect(res, 301, SITE_URL + to + url.search);
+    }
+  }
+  if (p === '/robots.txt' && ADMIN_HOST && host === ADMIN_HOST) {
+    // The admin's address is not for search engines; the public address is.
+    return sendText(req, res, 'User-agent: *\nDisallow: /\n', 'text/plain; charset=utf-8', 'public, max-age=3600');
+  }
+
   if (API_PATHS.test(p)) return proxy(req, res);
   if (req.method !== 'GET' && req.method !== 'HEAD') {
     res.writeHead(405, { 'content-type': 'text/plain', allow: 'GET, HEAD' });
     return res.end('Method not allowed');
   }
 
-  // Old addresses: /index.html and /products.html work, and so do /products and /admin.
+  // Clean addresses: /index.html is /, /products.html is /products.
+  if (p === '/index.html') return redirect(res, 301, '/' + url.search);
+  if (p === '/products.html') return redirect(res, 301, '/products' + url.search);
   if (p === '/admin') { res.writeHead(308, { location: '/admin/' + url.search }); return res.end(); }
+
+  if (PUBLIC.test(p)) {
+    const done = await page(req, res, p);
+    if (done !== false) return;
+  }
 
   if (p === '/data.js') {
     try {
@@ -221,8 +298,9 @@ async function handle(req, res) {
 
   const f = fileFor(p);
   if (f) return send(req, res, f);
-  const nf = fileFor('/404.html');
-  if (nf) return send(req, res, nf, 404);
+  if (!path.extname(p)) {
+    try { return await page(req, res, '/__missing__'); } catch { /* fall through */ }
+  }
   res.writeHead(404, { 'content-type': 'text/plain' });
   res.end('Not found');
 }
